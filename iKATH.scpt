@@ -70,6 +70,7 @@ on run {input, parameters}
     set SCRIPT_PATH to (path to documents folder as string) & "applescripts:" & SCRIPT_NAME & ":" as alias
     set LOGO to path to resource "nepal.png" in bundle SCRIPT_PATH
     set LUNCH_DATE to (current date)
+    set WDAYS to {"Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"}
     
     --hämta aktuell vecka
     set wDay to weekday of (LUNCH_DATE + (0 * 60 * 60)) --för morgondagens datum gör t.ex. 24 * 60 * 60
@@ -88,20 +89,13 @@ on run {input, parameters}
     
     
     
-    if (wDay = Monday) then
-        set wDay to "Måndag"
-    else if (wDay = Tuesday) then
-        set wDay to "Tisdag"
-    else if (wDay = Wednesday) then
-        set wDay to "Onsdag"
-    else if (wDay = Thursday) then
-        set wDay to "Torsdag"
-    else if (wDay = Friday) then
-        set wDay to "Fredag"
-    else
+    if (wDay = Saturday or wDay = Sunday) then
         display dialog "Ingen lunch idag...det är helg!" buttons ("Ok") default button "Ok"
         return
+    else
+        set wDay to item wDay of WDAYS
     end if
+
     
     
     
