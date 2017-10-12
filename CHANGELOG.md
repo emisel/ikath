@@ -7,7 +7,7 @@ and this project tries to adhere to [Semantic Versioning](http://semver.org/spec
 ## [Unreleased]
 
 ### Added
-- This change log. 
+- This change log.
 
 
 ## [2.0.0] - 2017-10-11
@@ -43,5 +43,5 @@ and this project tries to adhere to [Semantic Versioning](http://semver.org/spec
 - This iKATH applescript that presents todays menu from Kathmandu restaurant in an OSX Dialog.
 
 
-[Unreleased]: https://github.com/emisel/ikath
+[Unreleased]: https://github.com/emisel/ikath/compare/v2.0.0...HEAD
 [2.0.0]: https://github.com/emisel/ikath/releases/tag/v2.0.0
