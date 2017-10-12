@@ -21,16 +21,16 @@ and this project tries to adhere to [Semantic Versioning](http://semver.org/spec
 ### Fixed
 - Issue with iKATH displaying the old menu
 
-## [1.0.0] - Unreleased
+## 1.0.0 - Unreleased
 
 ### Added
 - Link to restaurant in dialog.
 
-## [0.0.3] - Unreleased
+## 0.0.3 - Unreleased
 ### Added
 - Price information for drinks and extras.
 
-## [0.0.2] - Unreleased
+## 0.0.2 - Unreleased
 
 ### Added
 - Algorithm for calculation of week nr.
