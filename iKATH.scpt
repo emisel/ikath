@@ -104,7 +104,9 @@ end if
 
 
 --skrapa data
-set xpath to "(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::b"
+set xpath to "(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::b |
+(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::details
+"
 
 set res to scrape(xpath, MENU_URL, 1)
 
