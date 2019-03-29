@@ -1,9 +1,3 @@
-# Changelog
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project tries to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
-
 
 ## [Unreleased]
 
@@ -50,4 +44,6 @@ and this project tries to adhere to [Semantic Versioning](http://semver.org/spec
 
 
 [Unreleased]: https://github.com/emisel/ikath/compare/v2.0.0...HEAD
+[3.0.0]: https://github.com/emisel/ikath/releases/tag/v3.0.0
 [2.0.0]: https://github.com/emisel/ikath/releases/tag/v2.0.0
+
