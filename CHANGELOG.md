@@ -4,6 +4,11 @@
 ### Added
 - This change log.
 
+## [3.0.1] - 2019-03-29
+
+### Changed
+- XPATH - fixed missing details (what a meal consist of)
+
 ## [3.0.0] - 2019-03-29
 
 ### Changed 
@@ -44,6 +49,8 @@
 
 
 [Unreleased]: https://github.com/emisel/ikath/compare/v2.0.0...HEAD
+[3.0.1]: https://github.com/emisel/ikath/releases/tag/v3.0.1
 [3.0.0]: https://github.com/emisel/ikath/releases/tag/v3.0.0
 [2.0.0]: https://github.com/emisel/ikath/releases/tag/v2.0.0
+
 
