@@ -10,6 +10,12 @@ and this project tries to adhere to [Semantic Versioning](http://semver.org/spec
 ### Added
 - This change log.
 
+## [3.0.0] - 2019-03-29
+
+### Changed 
+- XPATH - much easier to read
+- XPATH adheres to new html
+
 ## [2.0.0] - 2017-10-11
 
 ### Changed

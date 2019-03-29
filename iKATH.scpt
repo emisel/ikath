@@ -16,7 +16,7 @@
  *)
 
 set MENU_HTML to "menu.html"
-set MENU_URL to "PATH_TO_RESTAURANT_MENU"
+set MENU_URL to "http://www.kathmandurestaurang.se/lunch.php"
 set MEAT_ALT_1 to 1
 set MEAT_ALT_2 to 2
 set VEG_ALT to 3
@@ -65,8 +65,17 @@ on getOrdinalDay(d)
 	return sum + (day of d)
 end getOrdinalDay
 
-on scrape(xpath, scrapeURL)
-	return do shell script "curl " & scrapeURL & " | xmllint --html --xpath '" & xpath & "' -" & " 2>dev/null | sed 's/^.*menu_bg.*$//g' | sed 's/<[^>]*>//g' | sed 's/^[	 ]*//g' "
+--return bd
+on scrape(xpath, scrapeURL, flag)
+	set sed to ""
+	if (flag = 1) then
+		set sed to "sed 's/<b>[0-9. 	]*//g' | sed 's/<\\/b>/\\
+	/g'  | sed 's/<[^>]*>//g'  | sed 's/[	]*//g' "
+	else if (flag = 0) then
+		set sed to "sed 's/^.*menu_bg.*$//g' | sed 's/<[^>]*>//g' | sed 's/^[	 ]*//g' "
+	end if
+	return do shell script "curl " & scrapeURL & " | xmllint --html --xpath '" & xpath & "' -" & " 2>dev/null | " & sed
+	
 end scrape
 
 
@@ -74,13 +83,13 @@ end scrape
 --hämta aktuell vecka
 set wDay to weekday of (LUNCH_DATE + (0 * 60 * 60)) --för morgondagens datum gör t.ex. 24 * 60 * 60
 
---sätter index till motsvarande h1-element för jämn resp. udda vecka...
+--sätter index till motsvarande div-element för jämn resp. udda vecka...
 if week(LUNCH_DATE) mod 2 = 0 then
 	--jämn
-	set katIndex to "Jämna"
+	set katIndex to 1
 else
 	--udda
-	set katIndex to "Udda"
+	set katIndex to 2
 end if
 
 
@@ -95,22 +104,15 @@ end if
 
 
 --skrapa data
-set xpath to "
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling::b[" & MEAT_ALT_1 & "] | 
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling::details[" & MEAT_ALT_1 & "] |
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling::b[" & MEAT_ALT_2 & "] |
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling:: details[" & MEAT_ALT_2 & "] |
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling::b[" & VEG_ALT & "] |
-    //h1[contains(.,\"" & katIndex & "\")]/../../table//div[node() = \"" & wDay & "\"]/following-sibling:: details[" & VEG_ALT & "]
-    "
+set xpath to "(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::b"
 
-set res to scrape(xpath, MENU_URL)
+set res to scrape(xpath, MENU_URL, 1)
 
 
 set xpath to "//div[@class=\"category-desc clearfix\"]/*[not(self::comment())]"
-set info to scrape(xpath, MENU_URL)
+set info to scrape(xpath, MENU_URL, 0)
 
-
+--return res
 set res to res & "
 
 
