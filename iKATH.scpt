@@ -69,7 +69,8 @@ end getOrdinalDay
 on scrape(xpath, scrapeURL, flag)
 	set sed to ""
 	if (flag = 1) then
-		set sed to "sed 's/<b>[0-9. 	]*//g' | sed 's/<\\/b>/\\
+		set sed to "sed 's/<b>[0-9. 	]*//g' | sed 's/<\\/details>/\\
+		
 	/g'  | sed 's/<[^>]*>//g'  | sed 's/[	]*//g' "
 	else if (flag = 0) then
 		set sed to "sed 's/^.*menu_bg.*$//g' | sed 's/<[^>]*>//g' | sed 's/^[	 ]*//g' "
@@ -104,8 +105,8 @@ end if
 
 
 --skrapa data
-set xpath to "(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::b |
-(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::details
+set xpath to "(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::b[position() <= 3] |
+(//div[node() = \"" & wDay & "\"])[" & katIndex & "]/following-sibling::details[position() <= 3]
 "
 
 set res to scrape(xpath, MENU_URL, 1)
